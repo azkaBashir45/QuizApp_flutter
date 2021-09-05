@@ -1,6 +1,7 @@
 import 'question.dart';
 
 class QuizBrain {
+  //ismy pehly store kry gy keh kis number pr h 
   int _questionNumber = 0;
 
   List<Question> _questionBank = [
@@ -30,7 +31,7 @@ class QuizBrain {
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         true),
   ];
-
+//create next question
   void nextQuestion() {
     if (_questionNumber < _questionBank.length - 1) {
       _questionNumber++;

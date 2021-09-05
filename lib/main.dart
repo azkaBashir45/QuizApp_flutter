@@ -29,6 +29,11 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  /*
+  kis type ki value store krna charhy 
+  aur chahty h run time pr change ho to isko blank chordy gy
+  */
+  List<Icon> scorekeeper = [];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -65,7 +70,15 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked true.
+                //The user picked true.run time pr change
+                setState(() {
+                  scorekeeper.add(
+                    Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ),
+                  );
+                });
               },
             ),
           ),
@@ -83,23 +96,23 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked false.
+                //The user picked false.mange run time
+                setState(() {
+                  scorekeeper.add(
+                    Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ),
+                  );
+                });
               },
             ),
           ),
         ),
         //TODO: Step 01 Add Score bar
         Row(
-          children: [
-            Icon(
-              Icons.check,
-              color: Colors.green,
-            ),
-            Icon(
-              Icons.close,
-              color: Colors.red,
-            ),
-          ],
+          //runtime pr value ay list ka name
+          children: scorekeeper,
         ),
       ],
     );

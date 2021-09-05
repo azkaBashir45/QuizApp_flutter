@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 //TODO: Step 2 - Import the rFlutter_Alert package here.
 import 'quiz_brain.dart';
@@ -34,6 +36,31 @@ class _QuizPageState extends State<QuizPage> {
   aur chahty h run time pr change ho to isko blank chordy gy
   */
   List<Icon> scorekeeper = [];
+  void getAnswer(bool pickAnswer) {
+    bool corectAnswer = quizBrain.getCorrectAnswer();
+    if (quizBrain.isFinshed() == true) {
+      quizBrain.restQuestion();
+      scorekeeper = [];
+    } else {
+      if (pickAnswer == corectAnswer) {
+        scorekeeper.add(
+          Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
+        );
+      } else {
+        scorekeeper.add(
+          Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        );
+      }
+      quizBrain.nextQuestion();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,8 +74,7 @@ class _QuizPageState extends State<QuizPage> {
             child: Center(
               child: Text(
                 //getText in question
-                quizBrain.getQuestionText()
-                ,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -74,12 +100,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked true.run time pr change
                 setState(() {
-                  scorekeeper.add(
-                    Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ),
-                  );
+                  getAnswer(true);
                 });
               },
             ),
@@ -100,12 +121,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked false.mange run time
                 setState(() {
-                  scorekeeper.add(
-                    Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ),
-                  );
+                  getAnswer(false);
                 });
               },
             ),

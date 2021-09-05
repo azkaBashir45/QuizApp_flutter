@@ -88,7 +88,19 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        //TODO: Step 01 Add Score Keeper
+        //TODO: Step 01 Add Score bar
+        Row(
+          children: [
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
+          ],
+        ),
       ],
     );
   }

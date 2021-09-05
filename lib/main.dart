@@ -1,8 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 //TODO: Step 2 - Import the rFlutter_Alert package here.
 import 'quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
@@ -39,6 +38,12 @@ class _QuizPageState extends State<QuizPage> {
   void getAnswer(bool pickAnswer) {
     bool corectAnswer = quizBrain.getCorrectAnswer();
     if (quizBrain.isFinshed() == true) {
+      //alert
+      Alert(
+        context: context,
+        title: 'Quiz App',
+        desc: 'Finished the quize app',
+      );
       quizBrain.restQuestion();
       scorekeeper = [];
     } else {
